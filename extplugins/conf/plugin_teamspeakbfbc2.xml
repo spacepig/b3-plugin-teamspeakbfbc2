@@ -12,25 +12,20 @@
 	</settings>
 	<settings name="teamspeakChannels">
 		<set name="B3">B3 autoswitched channel</set>
+		<set name="lobbychannel">lobbychannel</set>
+		<set name="privatechannel">private</set>
 		<set name="team1">Team 1</set>
 		<set name="team2">Team 2</set>
 	</settings>
+	<settings name="options">
+	<!-- autoswitch: 0=disabled, 1=team switch, 2=squad switch -->
+		<set name="autoswitch">1</set>
+	</settings>
 	<settings name="commands">
-		<!-- set here levels needed to be allowed to use commands.
-			You can define a command alias adding '-' and the alias after the command name.
-			Levels:
-			0 : everyone
-			1 : registered users
-			2 : regular users
-			20 : moderators
-			40 : admins
-			60 : full admins
-			80 : senior admins
-			100 : super admins
-		-->
-		
 		<set name="tsreconnect">80</set>
 		<set name="tsdisconnect">80</set>
-		<set name="teamspeak-ts">1</set>
+		<set name="tskick">80</set>
+		<set name="tsban">80</set>
+		<set name="teamspeak-ts">1</set>	
 	</settings>
 </configuration>

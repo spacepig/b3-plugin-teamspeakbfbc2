@@ -281,8 +281,37 @@ class Teamspeakbfbc2Plugin(b3.plugin.Plugin):
             else:
                 client.message('Teamspeak server not available')
                 
+                
+    def cmd_tslist(self ,data ,client, cmd=None):
+        """Return a list of all people on ts
+        """
+        if not client:
+            return None
+        clientlist = self.tsconnection.command('clientlist')
+        self.debug('clientlist: %s' % clientlist)
+        for c in clientlist:
+            nick = c['client_nickname']
+            client.message('Teamspeak Client %s : %s' % (c, nick))
+        return None
 
-
+        
+    def cmd_tskick(self ,data ,client, cmd=None):
+        """<name> Kick a user from TeamSpeak
+        """
+        if not client:
+            return None
+        message = 'Kicked-by-admin'
+        clientlist = self.tsconnection.command('clientlist')
+        for c in clientlist:
+            nick = c['client_nickname']
+            if nick in (data):
+                data = self.tsconnection.command('clientkick', {'clid': c['clid']}, 'reasonid':'4', 'reasonmsg':'%s' % message)
+                self.debug('client data : %s' % data)
+                client.message('Teamspeak Client %s was kicked' % nick)
+                return data
+            #clientkick clid=5|clid=6 reasonid=4 reasonmsg=Go\saway!
+        return None        
+        
 
     def moveClientToB3Channel(self, client):
         self.tsMoveClientToChannelId(client, self.tsChannelIdB3)
